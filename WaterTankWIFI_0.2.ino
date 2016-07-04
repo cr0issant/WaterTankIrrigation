@@ -19,10 +19,10 @@ String keyword = String("\"heure\":"); // Chaîne que l'on recherche dans le JSO
 int heure = 0; // Variable du fichier JSON reçu
 
 // Variables de temps
-int temps_arrosage = (0)*60 + 35; //minutes + secondes
-int heure_arrosage = 17;
+int temps_arrosage = (15)*60 + 0; //minutes + secondes
+int heure_arrosage = 8;
 float micro = 1000000;
-float temps_DeepSleep = (2)*60 + 0; // minutes + secondes
+float temps_DeepSleep = (30)*60 + 0; // minutes + secondes
 float ajust = 1.0929;
 
 // Broche pour relais
@@ -45,7 +45,7 @@ void setup() {
 
   Serial.println("");  // on affiche les paramètres 
   Serial.println("WiFi connecté");  
-  Serial.print("Adresse IP du module EPC: ");  
+  Serial.print("Adresse IP du ESP: ");  
   Serial.println(WiFi.localIP());
   Serial.print("Adresse IP de la box : ");
   Serial.println(WiFi.gatewayIP());
