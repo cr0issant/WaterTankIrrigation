@@ -121,8 +121,9 @@ void loop() {
      }
      digitalWrite(relay, LOW);
      //Arrosage pendant le temps nécessaire
-     //Patienter le temps après arrosage pour passer l heure
-     //Deep sleep de 2 minutes
+     //Patienter après arrosage pour passer l heure
+     delay(60*60*1000);
+     //Deep sleep 
      ESP.deepSleep(temps_DeepSleep*micro*ajust);
      delay(100);
      //delay(20000);
@@ -136,7 +137,7 @@ void loop() {
      else {
           Serial.printf ("Ce n\'est pas l\'heure d\'arroser !\n\n",heure);
           check = 0;
-          //Deep sleep de 2 minutes
+          //Deep sleep 
           ESP.deepSleep(temps_DeepSleep*micro*ajust);
           delay(100);
           //delay(20000);
