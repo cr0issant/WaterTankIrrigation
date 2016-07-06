@@ -1,6 +1,16 @@
 /*
 Arrosage automatique à heure fixe
- */
+Matos :
+Electronique :
+ Nodemcu ESP12
+ Relay 5V 220V
+
+Autre :
+ Pompe à eau 12V submersible
+ Panneaux photovolataïque
+ Régulateur de charge
+ Batterie 12V
+*/
 
 #include <ESP8266WiFi.h>
                 
@@ -23,6 +33,7 @@ int temps_arrosage = (15)*60 + 0; //minutes + secondes
 int heure_arrosage = 8;
 float micro = 1000000;
 float temps_DeepSleep = (30)*60 + 0; // minutes + secondes
+float temps_DeepSleep_apres_arrosage = (60)*60 + 0; // minutes + secondes
 float ajust = 1.0929;
 
 // Broche pour relais
@@ -114,17 +125,16 @@ void loop() {
   //S il est l heure on arrose 
   if ( heure == heure_arrosage ) {
      Serial.printf ("Arrosage !\n\n");
+     //Arrosage pendant le temps nécessaire
      for (int tempo = 0; tempo < temps_arrosage; tempo++) {
          digitalWrite(relay, HIGH);
          delay(1000);
          Serial.printf("%d s\n",tempo+1);
      }
      digitalWrite(relay, LOW);
-     //Arrosage pendant le temps nécessaire
-     //Patienter après arrosage pour passer l heure
-     delay(60*60*1000);
-     //Deep sleep 
-     ESP.deepSleep(temps_DeepSleep*micro*ajust);
+
+     //Deep sleep pendant 1 heure après arrosage
+     ESP.deepSleep(temps_DeepSleep_apres_arrosage*micro*ajust);
      delay(100);
      //delay(20000);
      //check = 0;
