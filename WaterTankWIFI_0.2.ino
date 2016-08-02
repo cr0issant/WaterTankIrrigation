@@ -20,8 +20,10 @@ const char* password = "pass";
 
 // Valeurs pour le serveur Web
 const char* host     = "siteweb.fr";
-String url = String("/time/time.php");
-const int httpPort = 80; // Le serveur Web attend tradionnellement sur le port 80
+String url = String("/potager/time.php");
+String urlLater = String("/potager/well.php?well=jarroseplustardmonvieux");
+String urlIrrigationDone = String("/potager/well.php?well=jarrosemaintenantmonvieux");
+const int httpPort = 80; // Le serveur Web attend tranquillement sur le port 80
 int check = 0;
 
 // Variables du JSON
@@ -29,10 +31,10 @@ String keyword = String("\"heure\":"); // Chaîne que l'on recherche dans le JSO
 int heure = 0; // Variable du fichier JSON reçu
 
 // Variables de temps
-int temps_arrosage = (15)*60 + 0; //minutes + secondes
-int heure_arrosage = 8;
+int temps_arrosage = (10)*60 + 0; //minutes + secondes
+int heure_arrosage = 19;
 float micro = 1000000;
-float temps_DeepSleep = (30)*60 + 0; // minutes + secondes
+float temps_DeepSleep = (29)*60 + 0; // minutes + secondes
 float temps_DeepSleep_apres_arrosage = (60)*60 + 0; // minutes + secondes
 float ajust = 1.0929;
 
@@ -132,6 +134,30 @@ void loop() {
          Serial.printf("%d s\n",tempo+1);
      }
      digitalWrite(relay, LOW);
+     
+     for( int tempo = 0; tempo < 10; tempo++) {
+          Serial.print("Connexion au serveur : ");
+          Serial.println(host);
+  
+          // On se place dans le rôle du  client en utilisant WifiClient
+          WiFiClient client;
+
+          // Si la connexion échoue ca sera pour la prochaine fois
+          if (!client.connect(host, httpPort)) {
+              Serial.println("connection failed");
+              return;
+          }
+  
+          // La connexion a réussie on forme le chemin 
+          Serial.print("Demande URL: ");
+          Serial.println(url);
+     
+          client.print(String("GET ") + urlIrrigationDone + " HTTP/1.1\r\n" +
+                    "Host: " + host + "\r\n" + 
+                    "Connection: close\r\n\r\n"); // On lance le script php
+          delay(1000); // On attend 1 seconde
+     }
+     Serial.printf ("Arrosage\n\n");
 
      //Deep sleep pendant 1 heure après arrosage
      ESP.deepSleep(temps_DeepSleep_apres_arrosage*micro*ajust);
@@ -140,11 +166,33 @@ void loop() {
      //check = 0;
   }
   else {
-     if ( check < 10 ) {
+     if ( check < 10 && heure == 0 ) {
           Serial.printf("Check %d\n",check+1);
           check++;
      }
      else {
+               for( int tempo = 0; tempo < 10; tempo++) {
+                    Serial.print("Connexion au serveur : ");
+                    Serial.println(host);
+  
+                    // On se place dans le rôle du  client en utilisant WifiClient
+                    WiFiClient client;
+
+                    // Si la connexion échoue ca sera pour la prochaine fois
+                    if (!client.connect(host, httpPort)) {
+                        Serial.println("connection failed");
+                        return;
+                    }
+  
+                    // La connexion a réussie on forme le chemin 
+                    Serial.print("Demande URL: ");
+                    Serial.println(url);
+                    client.print(String("GET ") + urlLater + " HTTP/1.1\r\n" +
+                         "Host: " + host + "\r\n" + 
+                         "Connection: close\r\n\r\n"); // On lance le script php
+                    delay(1000); // On attend 1 seconde
+               }
+               
           Serial.printf ("Ce n\'est pas l\'heure d\'arroser !\n\n",heure);
           check = 0;
           //Deep sleep 
