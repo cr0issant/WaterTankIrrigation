@@ -61,19 +61,6 @@ body {
 </style>
 
 <?php
-if ( $_POST['arrosage'] == 'auto' )
-{
-	automatique();
-}
-elseif ( $_POST['arrosage'] == 'desac' )
-{
-	desactiver();
-}
-elseif ( $_POST['arrosage'] == 'force' )
-{
-	force();
-}
-else { }
 
 function automatique()
 {
@@ -96,6 +83,21 @@ function force()
 	fputs($json, '{"heure":19}');
 	fclose($json);
 }
+
+if ( $_POST['arrosage'] == 'auto' )
+{
+	automatique();
+}
+elseif ( $_POST['arrosage'] == 'desac' )
+{
+	desactiver();
+}
+elseif ( $_POST['arrosage'] == 'force' )
+{
+	force();
+}
+else { }
+
 
 $json = file_get_contents('http://siteweb.fr/potager/time.php');
 $json_data = json_decode($json);
