@@ -13,4 +13,4 @@ Other :
  Battery 12V  
  Water tank 1000L  
    
-html/PHP page for gestion  
+HTML/PHP page for gestion  
