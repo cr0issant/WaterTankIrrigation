@@ -99,7 +99,7 @@ elseif ( $_POST['arrosage'] == 'force' )
 else { }
 
 
-$json = file_get_contents('http://siteweb.fr/potager/time.php');
+$json = file_get_contents('./time.php');
 $json_data = json_decode($json);
 //echo 'Il est '.$json_data->heure.'h.';
 ?>
