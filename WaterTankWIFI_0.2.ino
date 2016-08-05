@@ -19,7 +19,7 @@ const char* ssid     = "Router";
 const char* password = "pass";
 
 // Valeurs pour le serveur Web
-const char* host     = "siteweb.fr";
+const char* host     = "siteweb.tld";
 String url = String("/potager/time.php");
 String urlLater = String("/potager/well.php?well=jarroseplustardmonvieux");
 String urlIrrigationDone = String("/potager/well.php?well=jarrosemaintenantmonvieux");
