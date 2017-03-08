@@ -2,8 +2,11 @@
 En rentrant de vacances l’année dernière notre potager avait gentiment cramé.
 
 La solution trouvée : Et si on créait un système d’arrosage entièrement autonome.
+
 J’ai tout de même fait une courte recherche pour voir si un internaute avait déjà créé/partagé un système comparable.
+
 Et je suis tombé sur cet article : http://serreecolo.blogspot.fr/2014/06/lannee-derniere-nous-avons-achete-une.html 😀
+
 Et celui là : http://www.jc-omega.com/index.php?post/2014/07/19/Syst%C3%A8me-Domotique-de-jardin-autonome 😀
 
 Du coup nous avons fait le notre et je le partage 
