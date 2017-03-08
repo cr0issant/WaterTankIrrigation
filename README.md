@@ -1,4 +1,5 @@
 # WaterTankIrrigation
+
 En rentrant de vacances l’année dernière notre potager avait gentiment cramé.
 
 La solution trouvée : Et si on créait un système d’arrosage entièrement autonome.
@@ -12,6 +13,7 @@ Et celui là : http://www.jc-omega.com/index.php?post/2014/07/19/Syst%C3%A8me-Do
 Du coup nous avons fait le notre et je le partage 
 
 Ci-dessous le détail.
+
 
 
 Matos pour l’irrigation
@@ -36,6 +38,8 @@ Matos pour l’irrigation
 – Tuyaux poreux
 
 – Goutteurs
+
+
 
 Coût total environ 200€. Ce n’est pas donnée, mais c’était marrant à faire :-p
 
